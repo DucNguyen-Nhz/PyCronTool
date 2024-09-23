@@ -1,22 +1,26 @@
 import json
 import os
+import logging
 
 class Cache:
     def __init__(self, id: str, **kwargs):
-        self.id = id
+        self._id = id
         self.cache = {}
         path_prefix = kwargs.get("prefix", os.path.dirname(__file__))
         self.path = f"{path_prefix}/.cache"
 
     def load(self):
-        with open(self.path + f"/{self.id}.json", "r") as file:
+        with open(self.path + f"/{self._id}.json", "r") as file:
             self.cache = json.load(file)
 
     def dump(self):
         if not os.path.exists(self.path):
             os.makedirs(self.path)
+            logging.info(f"Creating cache directory {self.path}")
 
-        with open(self.path + f"/{self.id}.json", "x") as file:
+        logging.info(f"Dumping cache to {self.path}/{self._id}.json")
+
+        with open(self.path + f"/{self._id}.json", "x") as file:
             json.dump(self.cache, file)
 
     def add(self, key, value):

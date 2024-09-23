@@ -15,7 +15,7 @@ class TestJobBasicFunctions(unittest.TestCase):
         # Check job attributes
         self.assertEqual(job.cron.cron, cron.split(" "))
         self.assertEqual(job.command, ["ls"])
-        self.assertEqual(job.cache.id, id)
+        self.assertEqual(job.cache._id, id)
 
     def test_job_run(self):
 
@@ -29,7 +29,7 @@ class TestJobBasicFunctions(unittest.TestCase):
         # Check job attributes
         self.assertEqual(job.cron.cron, cron.split(" "))
         self.assertEqual(job.command, ["ls"])
-        self.assertEqual(job.cache.id, id)
+        self.assertEqual(job.cache._id, id)
 
         # Check job output
         self.assertEqual(output, out.stdout)
