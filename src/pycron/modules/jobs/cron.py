@@ -29,7 +29,7 @@ class Cron:
     def __init__(self, cron: str) -> None:
         self.cron = cron.split(" ")
         if len(self.cron) != 5:
-            raise InvalidCronLength(self.cron)
+            raise InvalidCronLength(cron)
 
     def __str__(self) -> str:
         return (
