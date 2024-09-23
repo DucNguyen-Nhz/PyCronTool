@@ -9,7 +9,7 @@ class Cache:
         self.path = f"{path_prefix}/.cache"
 
     def load(self):
-        with open(self.path, "r") as file:
+        with open(self.path + f"/{self.id}.json", "r") as file:
             self.cache = json.load(file)
 
     def dump(self):
