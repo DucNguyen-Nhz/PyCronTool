@@ -1,4 +1,3 @@
-from datetime import datetime as dt
 from .exception import InvalidCronLength
 
 
@@ -32,8 +31,6 @@ class Cron:
         if len(self.cron) != 5:
             raise InvalidCronLength(self.cron)
 
-        self.last_update = dt.now()
-
     def __str__(self) -> str:
         return (
             _parse_crontab(self.cron[0], "minute")
@@ -46,9 +43,14 @@ class Cron:
             + "\n"
             + _parse_crontab(self.cron[4], "day of week")
         )
+    
 
-    def is_now(self):
+    def til_next(self):
+        pass
+
+    def from_last(self):
         pass
 
     def has_been(self):
         pass
+    
